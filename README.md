@@ -1,6 +1,8 @@
 # TwitterTimeLineShooter
 空から落ちてくるツイートを特殊な銃でふぁぼ（撃）ってふぁぼ数を稼ぐアクションシューティングゲームです。
 
+作成の経緯やデモプレイの様子などは「[【Unity】Unityを使って一日でゲームを作ってみた](http://blog.mohyo.net/2017/05/1956/)」にまとめてあります。
+
 ## ダウンロード
 [Releases · 0V/TwitterTimeLineShooter](https://github.com/0V/TwitterTimeLineShooter/releases) から自分の使っているOSに対応した最新バージョンのzipファイルをダウンロードしてください。
 

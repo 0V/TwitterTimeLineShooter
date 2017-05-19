@@ -4,7 +4,7 @@
 作成の経緯やデモプレイの様子などは「[【Unity】Unityを使って一日でゲームを作ってみた](http://blog.mohyo.net/2017/05/1956/)」にまとめてあります。
 
 ## ダウンロード
-[Releases · 0V/TwitterTimeLineShooter](https://github.com/0V/TwitterTimeLineShooter/releases) から自分の使っているOSに対応した最新バージョンのzipファイルをダウンロードしてください。
+[Releases · 0V/TwitterTimeLineShooter](https://github.com/0V/TwitterTimeLineShooter/releases) から自分の使っているOSに対応した最新バージョンのzipファイル（Linuxはtar.gzファイル）をダウンロードしてください。
 
 ## 遊び方
 1. 設定から Twitter の ConsumerKey / ConsumerSecret / AccessToken / AccessToeknSecret を登録します。

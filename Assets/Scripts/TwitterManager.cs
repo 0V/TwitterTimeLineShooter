@@ -6,7 +6,16 @@ using UnityEngine.UI;
 
 public class TwitterManager : MonoBehaviour
 {
-    public GameObject TweetTemplate;
+
+    #region TweetTemplate Unity SerializeField プロパティ
+    [SerializeField]
+    private GameObject _TweetTemplate;
+    public GameObject TweetTemplate
+    {
+        get { return _TweetTemplate; }
+        set { _TweetTemplate = value; }
+    }
+    #endregion
 
 //    [SerializeField] private int getTweetCount = 50;
     [SerializeField] private float minWaitSecond = 0.4f;
@@ -15,6 +24,7 @@ public class TwitterManager : MonoBehaviour
     private Client client;
     private Stream stream;
     private GameSystemScript gameSystem;
+    private Queue<Tweet> timeLineQueue = new Queue<Tweet>();
 
 
     // Use this for initialization
@@ -49,8 +59,6 @@ public class TwitterManager : MonoBehaviour
             Debug.Log(response);
         }
     }
-
-    private Queue<Tweet> timeLineQueue = new Queue<Tweet>();
 
     private IEnumerator ShowTimeLine(string endpoint, Dictionary<string, string> parameters, TwitterCallback callback)
     {

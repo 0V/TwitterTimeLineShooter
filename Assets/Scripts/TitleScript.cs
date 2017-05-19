@@ -16,7 +16,7 @@ public class TitleScript : MonoBehaviour
     }
     #endregion
 
-    private bool isRequeting = false;
+    private bool isRequesting = false;
 
     private void Start()
     {
@@ -25,8 +25,8 @@ public class TitleScript : MonoBehaviour
 
     public void ClickTitleStart()
     {
-        if (isRequeting) return;
-        isRequeting = true;
+        if (isRequesting) return;
+        isRequesting = true;
         var oauth = new Oauth(
             SettingManager.Keys.ConsumerKey,
             SettingManager.Keys.ConsumerSecret,
@@ -41,7 +41,7 @@ public class TitleScript : MonoBehaviour
 
     private void Callback(bool success, string response)
     {
-        isRequeting = false;
+        isRequesting = false;
 
         if (success)
         {

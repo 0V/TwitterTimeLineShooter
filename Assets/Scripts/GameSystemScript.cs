@@ -7,21 +7,107 @@ using UnityEngine.UI;
 public class GameSystemScript : MonoBehaviour
 {
 
-    public Text AllCountText;
-    public Text FavCountText;
-    public Text MissCountText;
-    public Text ClearCountText;
-    public Text StartText;
-    public Text ResultText;
+    #region AllCountText Unity SerializeField プロパティ
+    [SerializeField]
+    private Text _AllCountText;
+    public Text AllCountText
+    {
+        get { return _AllCountText; }
+        set { _AllCountText = value; }
+    }
+    #endregion
 
-    public int AllCount = -1;
-    public int FavCount = 0;
-    public int MissCount = 0;
-    public int ClearCount = 0;
+    #region ClearCountText Unity SerializeField プロパティ
+    [SerializeField]
+    private Text _ClearCountText;
+    public Text ClearCountText
+    {
+        get { return _ClearCountText; }
+        set { _ClearCountText = value; }
+    }
+    #endregion
 
-    public bool IsStarted = false;
-    public bool IsEnded = false;
+    #region FavCountText Unity SerializeField プロパティ
+    [SerializeField]
+    private Text _FavCountText;
+    public Text FavCountText
+    {
+        get { return _FavCountText; }
+        set { _FavCountText = value; }
+    }
+    #endregion
 
+    #region MissCountText Unity SerializeField プロパティ
+    [SerializeField]
+    private Text _MissCountText;
+    public Text MissCountText
+    {
+        get { return _MissCountText; }
+        set { _MissCountText = value; }
+    }
+    #endregion
+
+    #region StartText Unity SerializeField プロパティ
+    [SerializeField]
+    private Text _StartText;
+    public Text StartText
+    {
+        get { return _StartText; }
+        set { _StartText = value; }
+    }
+    #endregion
+
+    #region ResultText Unity SerializeField プロパティ
+    [SerializeField]
+    private Text _ResultText;
+    public Text ResultText
+    {
+        get { return _ResultText; }
+        set { _ResultText = value; }
+    }
+    #endregion
+
+
+
+    #region AllCount Unity SerializeField プロパティ
+    [SerializeField]
+    private int _AllCount = -1;
+    public int AllCount
+    {
+        get { return _AllCount; }
+        set { _AllCount = value; }
+    }
+    #endregion
+
+    #region FavCount Unity SerializeField プロパティ
+    [SerializeField]
+    private int _FavCount = 0;
+    public int FavCount
+    {
+        get { return _FavCount; }
+        set { _FavCount = value; }
+    }
+    #endregion
+
+    #region MissCount Unity SerializeField プロパティ
+    [SerializeField]
+    private int _MissCount = 0;
+    public int MissCount
+    {
+        get { return _MissCount; }
+        set { _MissCount = value; }
+    }
+    #endregion
+
+    #region ClearCount Unity SerializeField プロパティ
+    [SerializeField]
+    private int _ClearCount = 0;
+    public int ClearCount
+    {
+        get { return _ClearCount; }
+        set { _ClearCount = value; }
+    }
+    #endregion
 
     #region Score Unity SerializeField プロパティ
     [SerializeField]
@@ -33,6 +119,27 @@ public class GameSystemScript : MonoBehaviour
     }
     #endregion
 
+
+    #region IsStarted Unity SerializeField プロパティ
+    [SerializeField]
+    private bool _IsStarted = false;
+    public bool IsStarted
+    {
+        get { return _IsStarted; }
+        set { _IsStarted = value; }
+    }
+    #endregion
+
+
+    #region IsEnded Unity SerializeField プロパティ
+    [SerializeField]
+    private bool _IsEnded = false;
+    public bool IsEnded
+    {
+        get { return _IsEnded; }
+        set { _IsEnded = value; }
+    }
+    #endregion
 
     public void SetupText()
     {
@@ -52,7 +159,6 @@ public class GameSystemScript : MonoBehaviour
     {
         StartCoroutine(GoStartCoroutine());
     }
-
 
     // ゲームスタート
     private IEnumerator GoStartCoroutine()

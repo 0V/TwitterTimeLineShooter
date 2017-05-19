@@ -16,7 +16,6 @@ public class SettingScript : MonoBehaviour
     }
     #endregion
 
-
     #region ConsumerSecretInput Unity SerializeField プロパティ
     [SerializeField]
     private InputField _ConsumerSecretInput;
@@ -49,7 +48,6 @@ public class SettingScript : MonoBehaviour
         set { _AccessTokenSecretInput = value; }
     }
     #endregion
-
 
     #region TweetCountSlider Unity SerializeField プロパティ
     [SerializeField]

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using TwitterForUnity;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class TitleScript : MonoBehaviour
 {
@@ -15,6 +17,11 @@ public class TitleScript : MonoBehaviour
         set { _Modal = value; }
     }
     #endregion
+
+    [SerializeField]
+    private Slider loadSlider;
+    [SerializeField]
+    private GameObject loadingObject;
 
     private bool isRequesting = false;
 
@@ -39,14 +46,25 @@ public class TitleScript : MonoBehaviour
         StartCoroutine(client.Get("account/verify_credentials", parameters, this.Callback));
     }
 
+    private IEnumerator GoStart()
+    {
+        loadingObject.SetActive(true);
+        var async = SceneManager.LoadSceneAsync("GameScene");
+        while (!async.isDone)
+        {
+            yield return loadSlider.value = async.progress;
+        }
+
+//        CameraFade.StartAlphaFade(Color.black, false, 0.5f, 0.5f, () => { SceneManager.LoadScene("GameScene"); });
+    }
+
     private void Callback(bool success, string response)
     {
         isRequesting = false;
 
         if (success)
         {
-            var res = JsonUtility.FromJson<TweetUser>(response);
-            CameraFade.StartAlphaFade(Color.black, false, 0.5f, 0.5f, () => { UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene"); });
+            StartCoroutine(GoStart());
         }
         else
         {

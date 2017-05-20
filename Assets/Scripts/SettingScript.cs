@@ -136,7 +136,8 @@ public class SettingScript : MonoBehaviour
 
     private void SaveParams()
     {
-        SettingManager.GameParams.AllTweetCount = (int)TweetCountSlider.value * 10;
+        SettingManager.GameParams.AllTweetCount = (int)(TweetCountSlider.value * 10);
+        SettingManager.GameParams.DoFavorite = FavoriteToggle.isOn;
         SettingManager.SaveGameParams();
     }
 

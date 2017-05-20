@@ -16,7 +16,7 @@ public class GameParameters : ISaveData
     public GameParameters()
     {
         AllTweetCount = PlayerPrefs.GetInt(GameParametersKey.AllTweetCount.ToString(), 30);
-        DoFavorite = PlayerPrefs.GetInt(GameParametersKey.AllTweetCount.ToString(), 0) == 1;
+        DoFavorite = PlayerPrefs.GetInt(GameParametersKey.DoFavorite.ToString(), 0) == 1;
     }
 
     public void Save()
@@ -25,6 +25,6 @@ public class GameParameters : ISaveData
 
         int doFavoNum = 0;
         if (DoFavorite) doFavoNum = 1;
-        PlayerPrefs.SetInt(GameParametersKey.AllTweetCount.ToString(), doFavoNum);
+        PlayerPrefs.SetInt(GameParametersKey.DoFavorite.ToString(), doFavoNum);
     }
 }

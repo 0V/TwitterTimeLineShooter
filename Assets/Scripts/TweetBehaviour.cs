@@ -67,7 +67,7 @@ public class TweetBehaviour : MonoBehaviour
     }
     #endregion
 
-    [SerializeField]private Color maskColor = new Color(0,0,1,0.4f);
+    [SerializeField] private Color maskColor = new Color(0, 0, 1, 0.4f);
 
     private GameSystemScript gameSystem;
     private Tweet tweet;
@@ -97,7 +97,7 @@ public class TweetBehaviour : MonoBehaviour
         NameText.text = name;
         SNText.text = "@" + sn;
         StatusText.text = status;
-    }    
+    }
 
     public void Hit()
     {
@@ -108,6 +108,8 @@ public class TweetBehaviour : MonoBehaviour
         IsCounted = true;
         gameSystem.AddFavCount();
         this.transform.Find("TweetBox").gameObject.SetActive(false);
+
+        if (SettingManager.GameParams.DoFavorite) Favorite();
     }
 
     public void Miss()
@@ -117,5 +119,25 @@ public class TweetBehaviour : MonoBehaviour
         IsCounted = true;
         gameSystem.AddMissCount();
         this.transform.root.Find("Canvas").transform.Find("ImageBGMask").GetComponent<Image>().color = maskColor;
+    }
+
+    public void Favorite()
+    {
+        Dictionary<string, string> parameters = new Dictionary<string, string>();
+        parameters["id"] = tweet.id_str;
+        StartCoroutine(SettingManager.Keys.CreateClient().Post("favorites/create", parameters, FavoriteCallback));
+    }
+
+    private void FavoriteCallback(bool success, string response)
+    {
+        if (success)
+        {
+            Debug.Log("Favorite!");
+//            Tweet tweet = JsonUtility.FromJson<Tweet>(response);
+        }
+        else
+        {
+            Debug.Log(response);
+        }
     }
 }

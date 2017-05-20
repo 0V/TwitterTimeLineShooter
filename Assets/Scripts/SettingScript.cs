@@ -59,7 +59,6 @@ public class SettingScript : MonoBehaviour
     }
     #endregion
 
-
     #region SliderCountText Unity SerializeField プロパティ
     [SerializeField]
     private Text _SliderCountText;
@@ -77,6 +76,16 @@ public class SettingScript : MonoBehaviour
     {
         get { return _Modal; }
         set { _Modal = value; }
+    }
+    #endregion
+
+    #region FavoriteToggle Unity SerializeField プロパティ
+    [SerializeField]
+    private Toggle _FavoriteToggle;
+    public Toggle FavoriteToggle
+    {
+        get { return _FavoriteToggle; }
+        set { _FavoriteToggle = value; }
     }
     #endregion
 
@@ -113,6 +122,7 @@ public class SettingScript : MonoBehaviour
     {
         TweetCountSlider.value = SettingManager.GameParams.AllTweetCount / 10f;
         OnTweetCountSliderChanges();
+        FavoriteToggle.isOn = SettingManager.GameParams.DoFavorite;
     }
 
     private void SaveKeys()
@@ -146,19 +156,25 @@ public class SettingScript : MonoBehaviour
         SaveAll();
     }
 
-    public void ClickSettingTitle()
+    public bool CheckChanged()
     {
-        bool isChanged = false;
-
         var keyList = SettingManager.Keys.GetKeyList();
 
         for (int i = 0; i < 4; i++)
         {
-            if (inputList[i].text != keyList[i]) isChanged = true;
+            if (inputList[i].text != keyList[i]) return true;
         }
 
-        if (SettingManager.GameParams.AllTweetCount != (int)TweetCountSlider.value * 10) isChanged = true;
+        if (SettingManager.GameParams.AllTweetCount != (int)TweetCountSlider.value * 10) return true;
 
+        if (SettingManager.GameParams.DoFavorite != FavoriteToggle.isOn) return true;
+
+        return false;
+    }
+
+    public void ClickSettingTitle()
+    {
+        var isChanged = CheckChanged();
 
         if (isChanged)
         {
